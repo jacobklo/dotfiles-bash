@@ -1,0 +1,12 @@
+alias gitdotbash='git --git-dir=$HOME/.gitdotbash/ --work-tree=$HOME'
+gitdotbash config --local status.showUntrackedFiles no
+
+function _update_ps1() {
+    PS1=$(~/.local/bin/powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+export PYTHONPATH=$PYTHONPATH:~/.local/lib/python3/site-packages
